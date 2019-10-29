@@ -24,7 +24,6 @@ int _printf(const char *format, ...)
 		{"d", get_number},
 		{NULL, NULL}
 	};
-
 	va_start(par, format);
 
 	while (format[i] && format)
@@ -44,11 +43,13 @@ int _printf(const char *format, ...)
 			}
 			i++;
 		}
-		buf[bi] =  format[i];
-		bi++;
+		else
+		{
+			buf[bi] =  format[i];
+			bi++;
+		}
 		i++;
 	}
-
 	buf[bi + 1] = '\0';
 	write(1, buf, _strlen(buf));
 	return (_strlen(buf));
