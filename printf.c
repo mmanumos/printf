@@ -60,7 +60,6 @@ int _printf(const char *format, ...)
 	char *cad;
 	char *(*f)(va_list);
 
-
 	va_start(par, format);
 	if (format == NULL)
 	{
@@ -102,5 +101,6 @@ int _printf(const char *format, ...)
 		i++;
 	}
 	write_buffer(bi, buf);
+	free(buf);
 	return (_strlen(buf));
 }
