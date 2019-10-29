@@ -72,8 +72,8 @@ char *_get_char(va_list cad)
 char *_get_string(va_list cad)
 {
 	char *str;
-	str = va_arg(cad, char *);
 
+	str = va_arg(cad, char *);
 	if (str == NULL)
 	{
 		return (0);
