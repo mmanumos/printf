@@ -1,4 +1,5 @@
 #include "holberton.h"
+#include <stdio.h>
 
 /**
  * _strlen - return cont
@@ -55,6 +56,9 @@ char *_get_char(va_list cad)
 {
 	char *str = malloc(1);
 	char c = va_arg(cad, int);
+
+	if (c == 0)
+		write(1, &c, 1);
 
 	str[0] = c;
 	return (str);
