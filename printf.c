@@ -17,7 +17,6 @@ char *(*get_function(char ban))(va_list)
 	};
 	int k = 0;
 
-	printf("Entra char a auxiliar\n", ban);
 	while (print_f[k].flag != NULL)
 	{
 		if (*print_f[k].flag == ban)
