@@ -54,7 +54,7 @@ void write_buffer(int a, char *buffer)
  */
 int _printf(const char *format, ...)
 {
-	int i = 0, bi = 0;
+	int i = 0, bi = 0, len = 0;
 	va_list par;
 	char *buf = malloc(1024);
 	char *cad;
@@ -101,6 +101,6 @@ int _printf(const char *format, ...)
 		i++;
 	}
 	write_buffer(bi, buf);
-	free(buf);
-	return (_strlen(buf));
+	len = _strlen(buf);
+	return (len);
 }
