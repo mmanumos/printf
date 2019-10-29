@@ -1,5 +1,11 @@
 #include "holberton.h"
 #include <stdio.h>
+/**
+ * get_function - Finds the pointer to function
+ *
+ * @ban: the value tu be compared.
+ * Return: The function of corresponding flag.
+ */
 char *(*get_function(char ban))(va_list)
 {
 	sp print_f[] = {
@@ -27,6 +33,8 @@ char *(*get_function(char ban))(va_list)
 /**
  * write_buffer - prints the buffer already concatenated
  *
+ * @a: The iterator of the buffer.
+ * @buffer: The buffer that will be printer.
  */
 
 void write_buffer(int a, char *buffer)
