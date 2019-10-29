@@ -1,5 +1,4 @@
 #include "holberton.h"
-#include "functions.c"
 
 /**
  *
