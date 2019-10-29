@@ -58,7 +58,6 @@ int _printf(const char *format, ...)
 	va_list par;
 	char *buf = malloc(1024);
 	char *cad;
-	va_start(par, format);
 	char *(*f)(va_list);
 
 
