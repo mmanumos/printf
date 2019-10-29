@@ -61,6 +61,9 @@ int _printf(const char *format, ...)
 	char *(*f)(va_list);
 
 	va_start(par, format);
+	if (format[i] == '%' && format[i + 1] == '\0')
+		return (-1);
+
 	while (format[i] && format)
 	{
 		if ((format[i] == '%') && (format[i + 1] != '%'))
@@ -69,6 +72,7 @@ int _printf(const char *format, ...)
 			if (f != NULL)
 			{
 				cad = f(par);
+				cad = (cad == 0) ? "(null)" : cad;
 				buf = _strncat(buf, cad, _strlen(cad));
 				bi = bi + _strlen(cad);
 				i++;
@@ -81,8 +85,7 @@ int _printf(const char *format, ...)
 		}
 		else if ((format[i] == '%') && (format[i + 1] == '%'))
 		{
-			i++;
-			buf[bi] = format[i];
+			buf[bi] = format[i++];
 			bi++;
 		}
 		else
