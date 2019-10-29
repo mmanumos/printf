@@ -17,7 +17,7 @@ int _printf(const char *format, ...)
 	va_list par;
 	char *buf = malloc(1024);
 	char *cad;
-	sp print_f[] = {
+	 sp print_f[] = {
 		{"s", _get_string},
 		{"c", _get_char},
 		{"i", get_number},
