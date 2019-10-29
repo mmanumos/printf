@@ -61,10 +61,14 @@ int _printf(const char *format, ...)
 	char *(*f)(va_list);
 
 	va_start(par, format);
+	if (format == NULL)
+	{
+		return (-1);
+	}
 	if (format[i] == '%' && format[i + 1] == '\0')
+	{
 		return (-1);
-	if (!format)
-		return (-1);
+	}
 	while (format[i] && format)
 	{
 		if ((format[i] == '%') && (format[i + 1] != '%'))
