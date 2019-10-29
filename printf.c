@@ -1,4 +1,40 @@
 #include "holberton.h"
+#include <stdio.h>
+char *(*get_function(char ban))(va_list)
+{
+	sp print_f[] = {
+		{"s", _get_string},
+		{"c", _get_char},
+		{"i", get_number},
+		{"d", get_number},
+		{NULL, NULL}
+	};
+	int k = 0;
+
+	printf("Entra char a auxiliar\n", ban);
+	while (print_f[k].flag != NULL)
+	{
+		if (*print_f[k].flag == ban)
+		{
+			return (print_f[k].f);
+		}
+		k++;
+	}
+	return (NULL);
+
+}
+
+/**
+ * write_buffer - prints the buffer already concatenated
+ *
+ */
+
+void write_buffer(int a, char *buffer)
+{
+	buffer[a + 1] = '\0';
+	write(1, buffer, _strlen(buffer));
+}
+
 
 /**
  * _printf - get the right function to call
@@ -10,38 +46,32 @@
  * Return: Total length of string
  *
  */
-
 int _printf(const char *format, ...)
 {
-	int i = 0, k, bi = 0;
+	int i = 0, bi = 0;
 	va_list par;
 	char *buf = malloc(1024);
 	char *cad;
-	sp print_f[] = {
-		{"s", _get_string},
-		{"c", _get_char},
-		{"i", get_number},
-		{"d", get_number},
-		{NULL, NULL}
-	};
-	va_start(par, format);
+	char *(*f)(va_list);
 
+	va_start(par, format);
 	while (format[i] && format)
 	{
 		if ((format[i] == '%') && (format[i + 1] != '%'))
 		{
-			k = 0;
-			while (print_f[k].flag)
+			f = get_function(format[i + 1]);
+			if (f != NULL)
 			{
-				if ((*print_f[k].flag) == format[i + 1])
-				{
-					cad = print_f[k].f(par);
-					buf = _strncat(buf, cad, _strlen(cad));
-					bi = bi + _strlen(cad);
-				}
-				k++;
+				cad = f(par);
+				buf = _strncat(buf, cad, _strlen(cad));
+				bi = bi + _strlen(cad);
+				i++;
 			}
-			i++;
+			else
+			{
+				buf[bi] = format[i];
+				bi++;
+			}
 		}
 		else if ((format[i] == '%') && (format[i + 1] == '%'))
 		{
@@ -56,7 +86,6 @@ int _printf(const char *format, ...)
 		}
 		i++;
 	}
-	buf[bi + 1] = '\0';
-	write(1, buf, _strlen(buf));
+	write_buffer(bi, buf);
 	return (_strlen(buf));
 }
