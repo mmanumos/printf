@@ -3,7 +3,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <unistd.h>
 
 /**
  * struct specifiers - Struct op
@@ -16,7 +16,7 @@ typedef struct specifiers
 {
 	char *flag;
 	char *(*f)();
-}sp;
+} sp;
 
 
 
