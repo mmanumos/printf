@@ -77,7 +77,11 @@ int _printf(const char *format, ...)
 			if (f != NULL)
 			{
 				cad = f(par);
-				cad = (cad == 0) ? "(null)" : cad;
+				cad = (cad == 0 && format[i + 1] == 's') ? "(null)" : cad;
+				if(cad == 0 && format[i + 1] == 'c')
+				{
+					return (1);
+				}
 				buf = _strncat(buf, cad, _strlen(cad));
 				bi = bi + _strlen(cad);
 				i++;
