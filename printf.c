@@ -43,6 +43,12 @@ int _printf(const char *format, ...)
 			}
 			i++;
 		}
+		else if ((format[i] == '%') && (format[i + 1] == '%'))
+		{
+			i++;
+			buf[bi] = format[i];
+			bi++;
+		}
 		else
 		{
 			buf[bi] =  format[i];
