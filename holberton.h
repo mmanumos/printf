@@ -25,6 +25,6 @@ int _strlen(char *s);
 char *_get_char(va_list cad);
 char *_get_string(va_list cad);
 char *get_number(va_list integer);
-
+char *_get_percentage(va_list cad);
 
 #endif
