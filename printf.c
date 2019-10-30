@@ -1,46 +1,4 @@
 #include "holberton.h"
-/**
- * get_function - Finds the pointer to function
- *
- * @ban: the value tu be compared.
- * Return: The function of corresponding flag.
- */
-char *(*get_function(char ban))(va_list)
-{
-	sp print_f[] = {
-		{"s", _get_string},
-		{"c", _get_char},
-		{"i", get_number},
-		{"d", get_number},
-		{NULL, NULL}
-	};
-	int k = 0;
-
-	while (print_f[k].flag != NULL)
-	{
-		if (*print_f[k].flag == ban)
-		{
-			return (print_f[k].f);
-		}
-		k++;
-	}
-	return (NULL);
-
-}
-
-/**
- * write_buffer - prints the buffer already concatenated
- *
- * @a: The iterator of the buffer.
- * @buffer: The buffer that will be printer.
- */
-
-void write_buffer(int a, char *buffer)
-{
-	buffer[a + 1] = '\0';
-	write(1, buffer, _strlen(buffer));
-}
-
 
 /**
  * _printf - get the right function to call
@@ -54,57 +12,69 @@ void write_buffer(int a, char *buffer)
  */
 int _printf(const char *format, ...)
 {
-	int i = 0, bi = 0, len = 0;
+	int i = 0, len = 0, k;
 	va_list par;
-	char *buf = malloc(1024);
-	char *cad;
-	char *(*f)(va_list);
 
+	sp print_f[] = {
+		{"s", _write_string}, {"c", _write_char},
+		{"%", _write_per}, {NULL, NULL}
+	};
 	va_start(par, format);
+
 	if (format == NULL)
-	{
 		return (-1);
-	}
-	if (format[i] == '%' && format[i + 1] == '\0')
-	{
-		return (-1);
-	}
+
 	while (format[i] && format)
 	{
-		if ((format[i] == '%') && (format[i + 1] != '%'))
+		if (format[i] == '%')
 		{
-			f = get_function(format[i + 1]);
-			if (f != NULL)
+			i++;
+			if (format[i] == '\0')
+				return (-1);
+
+			k = 0;
+			while (print_f[k].flag != NULL)
 			{
-				cad = f(par);
-				cad = (cad == 0 && format[i + 1] == 's') ? "(null)" : cad;
-				if(cad == 0 && format[i + 1] == 'c')
-				{
-					return (1);
-				}
-				buf = _strncat(buf, cad, _strlen(cad));
-				bi = bi + _strlen(cad);
-				i++;
+				if (*print_f[k].flag == format[i])
+					len += print_f[k].f(par);
+
+				k++;
 			}
-			else
-			{
-				buf[bi] = format[i];
-				bi++;
-			}
-		}
-		else if ((format[i] == '%') && (format[i + 1] == '%'))
-		{
-			buf[bi] = format[i++];
-			bi++;
+
 		}
 		else
 		{
-			buf[bi] =  format[i];
-			bi++;
+			_putchar(format[i]);
+			len++;
 		}
 		i++;
 	}
-	write_buffer(bi, buf);
-	len = _strlen(buf);
+	va_end(par);
 	return (len);
+}
+
+
+
+/**
+ * _strlen - return cont
+ * @s: string
+ *
+ * Return: Always 0
+ */
+int _strlen(char *s)
+{
+	return ((*s) ? 1 + _strlen(s + 1) : 0);
+}
+
+
+/**
+ * _putchar - writes the character c to stdout
+ * @c: The character to print
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
+ */
+int _putchar(char c)
+{
+	return (write(1, &c, 1));
 }
