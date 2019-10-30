@@ -85,6 +85,18 @@ char *_get_string(va_list cad)
 	else
 		return (str);
 }
+/**
+ * _get_percentage - get percentage and return percentage
+ * @cad: pointed array
+ *
+ * Return: Return string to pointer
+ */
+char *_get_percentage(va_list cad __attribute__((__unused__)))
+{
+	char *str;
+	str = "%";
+	return (str);
+}
 
 
 /**
