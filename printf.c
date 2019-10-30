@@ -12,6 +12,7 @@ char *(*get_function(char ban))(va_list)
 		{"c", _get_char},
 		{"i", get_number},
 		{"d", get_number},
+		{"%", _get_percentage},
 		{NULL, NULL}
 	};
 	int k = 0;
@@ -65,14 +66,19 @@ int _printf(const char *format, ...)
 	{
 		return (-1);
 	}
-	if (format[i] == '%' && format[i + 1] == '\0')
+	if (format[i] == '%' && (format[i + 1] == '\0' || format[i + 1] == '\n'))
 	{
 		return (-1);
 	}
 	while (format[i] && format)
 	{
-		if ((format[i] == '%') && (format[i + 1] != '%'))
+		if (format[i] == '%')
 		{
+			if (format[i + 1] == '\0')
+			{
+				write_buffer(bi, buf);
+				return (-1);
+			}
 			f = get_function(format[i + 1]);
 			if (f != NULL)
 			{
@@ -91,11 +97,6 @@ int _printf(const char *format, ...)
 				buf[bi] = format[i];
 				bi++;
 			}
-		}
-		else if ((format[i] == '%') && (format[i + 1] == '%'))
-		{
-			buf[bi] = format[i++];
-			bi++;
 		}
 		else
 		{
