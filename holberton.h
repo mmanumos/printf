@@ -26,5 +26,6 @@ char *_get_char(va_list cad);
 char *_get_string(va_list cad);
 char *get_number(va_list integer);
 char *_get_percentage(va_list cad);
+void *_calloc(unsigned int nmemb, unsigned int size);
 
 #endif
