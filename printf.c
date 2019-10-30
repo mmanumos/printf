@@ -57,7 +57,7 @@ int _printf(const char *format, ...)
 {
 	int i = 0, bi = 0, len = 0;
 	va_list par;
-	char *buf = malloc(1024);
+	char *buf = _calloc(1024, 1);
 	char *cad;
 	char *(*f)(va_list);
 
@@ -107,5 +107,6 @@ int _printf(const char *format, ...)
 	}
 	write_buffer(bi, buf);
 	len = _strlen(buf);
+	free(buf);
 	return (len);
 }
