@@ -65,8 +65,8 @@ int _write_string(va_list cad)
 
 int _write_number(va_list integer)
 {
-	int i = va_arg(integer, int);
-	int div = 10, a = 0, c = 0;
+	long int i = va_arg(integer, int);
+	long int div = 10, a = 0, c = 0;
 	char n = 'f';
 
 	if (i < 0)
