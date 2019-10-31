@@ -68,7 +68,6 @@ int _write_number(va_list integer)
 	int i = va_arg(integer, int);
 	int div = 10, a = 0, c = 0;
 	char n = 'f';
-	char cad[15];
 
 	if (i < 0)
 	{
@@ -77,7 +76,7 @@ int _write_number(va_list integer)
 	}
 	if (n == 't')
 	{
-		cad[c] = '-';
+		_putchar('-');
 		c++;
 	}
 	if (i > 10)
@@ -91,16 +90,15 @@ int _write_number(va_list integer)
 		{
 			a = i / div;
 			a = a % 10;
-			cad[c] = (a += 48);
+			_putchar(a += 48);
 			c++;
 			div = div / 10;
 		}
-		cad[c + 1] = '\0';
 	}
 	else
 	{
-		cad[c] = i += 48;
+		_putchar(i += 48);
+		c = 1;
 	}
-	write(1, cad, (_strlen(cad) - 1));
-	return (_strlen(cad));
+	return (c);
 }
