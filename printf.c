@@ -12,46 +12,45 @@
  */
 int _printf(const char *format, ...)
 {
-        int i = 0, len = 0, k;
-        va_list par;
+	int i = 0, len = 0, k, m = 0;
+	va_list par;
+	sp print_f[] = {
+		{"s", _write_string}, {"c", _write_char},
+		{"%", _write_per}, {NULL, NULL}
+	};
+	va_start(par, format);
+	if (format == NULL)
+		return (-1);
 
-        sp print_f[] = {
-                {"s", _write_string}, {"c", _write_char},
-                {"%", _write_per}, {NULL, NULL}
-        };
-        va_start(par, format);
+	while (format[i] && format)
+	{
+		m = 0;
+		if (format[i] == '%')
+		{
+			if (format[i + 1] == '\0')
+				return (-1);
 
-        if (format == NULL)
-                return (-1);
-
-        while (format[i] && format)
-        {
-                if (format[i] == '%')
-                {
-                        i++;
-                        if (format[i] == '\0')
-                                return (-1);
-
-                        k = 0;
-                        while (print_f[k].flag != NULL)
-                        {
-                                if (*print_f[k].flag == format[i])
-                                        len += print_f[k].f(par);
-
-                                k++;
-                        }
-
-                }
-
-                else
-                {
-                        _putchar(format[i]);
-                        len++;
-                }
-                i++;
-        }
-        va_end(par);
-        return (len);
+			k = 0;
+			while (print_f[k].flag != NULL)
+			{
+				if (*print_f[k].flag == format[i + 1])
+				{
+					len += print_f[k].f(par);
+					m = 2;
+					i++;
+				}
+				k++;
+			}
+		}
+		if (m == 0)
+		{
+			_putchar(format[i]);
+			len++;
+		}
+		i++;
+	}
+	va_end(par);
+	return (len);
 }
 
 

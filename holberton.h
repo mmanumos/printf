@@ -18,6 +18,7 @@ typedef struct specifiers
         int (*f)(va_list);
 } sp;
 
+
 int _printf(const char *format, ...);
 
 char *(*get_function(char flag))(va_list);
