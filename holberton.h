@@ -3,6 +3,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
 
 /**
  * struct specifiers - Struct op
@@ -13,8 +14,8 @@
 
 typedef struct specifiers
 {
-	char *flag;
-	char *(*f)(va_list);
+        char *flag;
+        int (*f)(va_list);
 } sp;
 
 int _printf(const char *format, ...);
@@ -22,10 +23,9 @@ int _printf(const char *format, ...);
 char *(*get_function(char flag))(va_list);
 char *_strncat(char *dest, char *src, int n);
 int _strlen(char *s);
-char *_get_char(va_list cad);
-char *_get_string(va_list cad);
-char *get_number(va_list integer);
-char *_get_percentage(va_list cad);
-void *_calloc(unsigned int nmemb, unsigned int size);
+int _write_string(va_list cad);
+int _write_char(va_list cad);
+int _write_per(va_list cad);
+int _putchar(char c);
 
 #endif
