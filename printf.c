@@ -15,8 +15,8 @@ int _printf(const char *format, ...)
 	int i = 0, len = 0, k, m = 0, n = 0;
 	va_list par;
 	sp print_f[] = {
-		{"s", _write_string}, {"c", _write_char},
-		{"%", _write_per}, {NULL, NULL}
+		{"s", _write_string}, {"c", _write_char}, {"d", _write_number},
+		{"%", _write_per}, {"i", _write_number}, {NULL, NULL}
 	};
 	va_start(par, format);
 	if (format == NULL)
