@@ -39,6 +39,7 @@ int _printf(const char *format, ...)
 					i++;
 					n = n + 2;
 					m = 1;
+					break;
 				}
 				k++;
 			}
