@@ -12,7 +12,7 @@
  */
 int _printf(const char *format, ...)
 {
-	int i = 0, len = 0, k, m = 0;
+	int i = 0, len = 0, k, m = 0, n = 0;
 	va_list par;
 	sp print_f[] = {
 		{"s", _write_string}, {"c", _write_char},
@@ -36,8 +36,9 @@ int _printf(const char *format, ...)
 				if (*print_f[k].flag == format[i + 1])
 				{
 					len += print_f[k].f(par);
-					m = 2;
 					i++;
+					n = n + 2;
+					m = 1;
 				}
 				k++;
 			}
@@ -45,12 +46,11 @@ int _printf(const char *format, ...)
 		if (m == 0)
 		{
 			_putchar(format[i]);
-			len++;
 		}
 		i++;
 	}
 	va_end(par);
-	return (len);
+	return ((i + len) - n);
 }
 
 
