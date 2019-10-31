@@ -7,6 +7,7 @@ The function of printf produce output according to the format that will be decri
 _printf [FORMAT] [ARGUMENTS...]
 ```
 • The format specifier is used during input and output. It is a way to tell the compiler what type of data is in a variable
+
 • The arguments are the ones from which a specifier will take its value for it to be printed
 
 *examples*
