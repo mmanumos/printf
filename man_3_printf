@@ -1,11 +1,23 @@
-.TH man 1 "29 October 2019" "0.0" "_printf man page"
+.TH man 3 "29 October 2019" "0.0" "_printf man page"
 .SH NAME
 .B _printf
 - _printf a formatted string to standard output
 .SH SYNOPSIS
 _printf FORMAT [ARGUMENT]...
+.B _putchar
+use the given initial function _putchar by holberton
+.B Formats
+.sp
+s - print string\n
+.sp
+c - print char\n
+.sp
+d - print digits
+.sp
+i - print integer
+.sp
 .SH DESCRIPTION
-Print ARGUMENT(s) according to FORMAT
+Print ARGUMENT(s) according to FORMAT, it's a clone from printf of standard library stdio.h
 .SH OPTIONS
 .B _printf
 does not take any options
