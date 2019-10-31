@@ -101,6 +101,6 @@ int _write_number(va_list integer)
 	{
 		cad[c] = i += 48;
 	}
-	write(1, cad, _strlen(cad));
+	write(1, cad, (_strlen(cad) - 1));
 	return (_strlen(cad));
 }
