@@ -64,7 +64,7 @@ int _printf(const char *format, ...)
  */
 int _strlen(char *s)
 {
-        return ((*s) ? 1 + _strlen(s + 1) : 0);
+	return ((*s) ? 1 + _strlen(s + 1) : 0);
 }
 
 
@@ -77,5 +77,5 @@ int _strlen(char *s)
  */
 int _putchar(char c)
 {
-        return (write(1, &c, 1));
+	return (write(1, &c, 1));
 }
