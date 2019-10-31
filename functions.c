@@ -10,10 +10,10 @@
 
 int _write_char(va_list cad)
 {
-        int c = va_arg(cad, int);
+	int c = va_arg(cad, int);
 
-        _putchar(c);
-        return (1);
+	_putchar(c);
+	return (1);
 }
 
 /**
@@ -25,9 +25,9 @@ int _write_char(va_list cad)
 
 int _write_per(va_list cad)
 {
-        (void) cad;
-        _putchar('%');
-        return (1);
+	(void) cad;
+	_putchar('%');
+	return (1);
 }
 
 
@@ -40,17 +40,17 @@ int _write_per(va_list cad)
 
 int _write_string(va_list cad)
 {
-        char *str;
+	char *str;
 
-        str = va_arg(cad, char *);
-        if (str == NULL)
-        {
-                write(1, "(null)", 6);
-                return (6);
-        }
-        else
-        {
-                write(1, str, _strlen(str));
-                return (_strlen(str));
-        }
+	str = va_arg(cad, char *);
+	if (str == NULL)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
+	else
+	{
+		write(1, str, _strlen(str));
+		return (_strlen(str));
+	}
 }
