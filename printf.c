@@ -35,10 +35,11 @@ int _printf(const char *format, ...)
 			{
 				if (*print_f[k].flag == format[i + 1])
 				{
-					len += print_f[k].f(par);
+					len = len + print_f[k].f(par);
 					i++;
 					n = n + 2;
 					m = 1;
+					break;
 				}
 				k++;
 			}
@@ -50,7 +51,7 @@ int _printf(const char *format, ...)
 		i++;
 	}
 	va_end(par);
-	return ((i + len) - n);
+	return (i + len - n);
 }
 
 
