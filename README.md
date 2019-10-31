@@ -24,6 +24,7 @@ Hello, World
 12
 ```
 This function prints the string on standard output and returns the number of character printed, the format is a string starting with % alongside with the character "s".
+
 After that, it prints the number on standard output according with what returned from the fisrt printf, strating with % along with the character "d", what will replace the format with the conversion of it with the value given in the argument.
 
 # References
