@@ -14,8 +14,8 @@
 
 typedef struct specifiers
 {
-        char *flag;
-        int (*f)(va_list);
+	char *flag;
+	int (*f)(va_list);
 } sp;
 
 
