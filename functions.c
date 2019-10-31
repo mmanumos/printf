@@ -54,3 +54,53 @@ int _write_string(va_list cad)
 		return (_strlen(str));
 	}
 }
+
+
+/**
+ * _write_number - get int and return string
+ * @integer: pointed array
+ *
+ * Return: Return string to pointer
+ */
+
+int _write_number(va_list integer)
+{
+	int i = va_arg(integer, int);
+	int div = 10, a = 0, c = 0;
+	char n = 'f';
+	char cad[15];
+
+	if (i < 0)
+	{
+		n = 't';
+		i = -i;
+	}
+	if (n == 't')
+	{
+		cad[c] = '-';
+		c++;
+	}
+	if (i > 10)
+	{
+		while (i / div > 0)
+		{
+			div *= 10;
+		}
+		div = div / 10;
+		while (div > 0)
+		{
+			a = i / div;
+			a = a % 10;
+			cad[c] = (a += 48);
+			c++;
+			div = div / 10;
+		}
+		cad[c + 1] = '\0';
+	}
+	else
+	{
+		cad[c] = i += 48;
+	}
+	write(1, cad, _strlen(cad));
+	return (_strlen(cad));
+}
