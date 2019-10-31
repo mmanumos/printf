@@ -27,6 +27,7 @@ int _strlen(char *s);
 int _write_string(va_list cad);
 int _write_char(va_list cad);
 int _write_per(va_list cad);
+int _write_number(va_list integer);
 int _putchar(char c);
 
 #endif
